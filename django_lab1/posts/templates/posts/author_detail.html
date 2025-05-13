@@ -1,0 +1,26 @@
+{% extends "shared/base.html" %}
+{% block title %}Author: {{ author.name }}{% endblock %}
+
+
+{% block content %}
+<div class="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-xl mt-6">
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">
+        Posts by {{ author.name }}
+    </h1>
+    {% if posts %}
+    <ul class="space-y-4">
+        {% for post in posts %}
+        <li>
+            <a href="{% url 'post_detail' post.id %}" class="text-lg font-semibold text-blue-600 hover:underline">
+                {{ post.title }}
+            </a>
+            <p class="text-sm text-gray-500">{{ post.date }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-gray-600 italic">This author has no posts yet.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
